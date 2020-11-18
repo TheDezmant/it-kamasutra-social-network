@@ -2,9 +2,7 @@ import React from "react";
 import StyledUsers from "./units";
 
 const Users = (props) => {
-    console.log("done0000!!", props.users);
     if (props.users.length === 0) {
-        console.log("done!!");
         props.setUsers([
             {
                 id: 1,
