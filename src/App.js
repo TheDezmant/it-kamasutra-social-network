@@ -5,7 +5,7 @@ import Content from "./components/Content";
 const App = () => {
     return (
         <>
-            <Header test />
+            <Header />
             <Content />
         </>
     );

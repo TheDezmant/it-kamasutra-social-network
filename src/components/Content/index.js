@@ -1,12 +1,12 @@
-import React from "react";
-import StyledContent from "./units";
-import Catalog from "./Catalog";
-import ProfileConteiner from "./Profile/ProfileConteiner";
-import News from "./News";
-import Setting from "./Setting";
-import { Route, BrowserRouter } from "react-router-dom";
-import DialogsContainer from "./Dialogs/dialogsContainer";
-import UsersContainer from "./Users/UsersContainer";
+import React from 'react';
+import StyledContent from './units';
+import Catalog from './Catalog';
+import ProfileConteiner from './Profile/ProfileConteiner';
+import News from './News';
+import Setting from './Setting';
+import { Route, BrowserRouter } from 'react-router-dom';
+import DialogsContainer from './Dialogs/dialogsContainer';
+import UsersContainer from './Users/UsersContainer';
 
 const Content = () => {
     let SomeComponent = () => <DialogsContainer />;

@@ -1,60 +1,69 @@
 import React from 'react';
-import StyledUsers from './units';
-import * as axios from 'axios';
+import { SelectedPage, StyledUsers } from './units';
 import userPhoto from '../../../asses/images/user.png';
 
-class Users extends React.Component {
-    getUsers = () => {
-        if (this.props.users.length === 0) {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users').then((response) => {
-                this.props.setUsers(response.data.items);
-            });
-        }
-    };
+let Users = (props) => {
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
-    render() {
-        return (
-            <StyledUsers>
-                <button onClick={this.getUsers}>GetUsers</button>
-                {this.props.users.map((u) => (
-                    <div key={u.id}>
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i);
+    }
+
+    return (
+        <StyledUsers>
+            <div>
+                {pages.map((p) => {
+                    return (
+                        <SelectedPage
+                            fw={props.currentPage === p ? 'bold' : ''}
+                            onClick={(e) => {
+                                props.onPageChanged(p);
+                            }}>
+                            {p}
+                        </SelectedPage>
+                    );
+                })}
+            </div>
+
+            {props.users.map((u) => (
+                <div key={u.id}>
+                    <div>
                         <div>
                             <div>
-                                <div>
-                                    <img src={userPhoto} alt="" width="50px" height="50px" />
-                                </div>
-                                <div>
-                                    {u.followed ? (
-                                        <button
-                                            onClick={() => {
-                                                this.props.unfollow(u.id);
-                                            }}>
-                                            UnFollow
-                                        </button>
-                                    ) : (
-                                        <button
-                                            onClick={() => {
-                                                this.props.follow(u.id);
-                                            }}>
-                                            Follow
-                                        </button>
-                                    )}
-                                </div>
+                                <img src={u.photos.small !== null ? u.photos.small : userPhoto} alt="" />
                             </div>
                             <div>
-                                <div>
-                                    <div>{u.name}</div>
-                                    <div>{'u.location.country'}</div>
-                                </div>
-                                <div>{'u.location.city'}</div>
-                                <div>{u.status}</div>
+                                {u.followed ? (
+                                    <button
+                                        onClick={() => {
+                                            props.unfollow(u.id);
+                                        }}>
+                                        UnFollow
+                                    </button>
+                                ) : (
+                                    <button
+                                        onClick={() => {
+                                            props.follow(u.id);
+                                        }}>
+                                        Follow
+                                    </button>
+                                )}
                             </div>
                         </div>
+                        <div>
+                            <div>
+                                <div>{u.name}</div>
+                                <div>{'u.location.country'}</div>
+                            </div>
+                            <div>{'u.location.city'}</div>
+                            <div>{u.status}</div>
+                        </div>
                     </div>
-                ))}
-            </StyledUsers>
-        );
-    }
-}
+                </div>
+            ))}
+        </StyledUsers>
+    );
+};
 
 export default Users;

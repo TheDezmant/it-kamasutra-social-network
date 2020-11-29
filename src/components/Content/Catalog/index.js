@@ -1,6 +1,6 @@
-import React from "react";
-import { StyledCatalog } from "./units";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { StyledCatalog } from './units';
+import { NavLink } from 'react-router-dom';
 
 const Catalog = () => {
     return (
@@ -8,6 +8,7 @@ const Catalog = () => {
             <NavLink to="/profile">Profile</NavLink>
             <NavLink to="/dialogs">Message</NavLink>
             <NavLink to="/news">News</NavLink>
+            <NavLink to="/users">Users</NavLink>
             <NavLink to="/music">Music</NavLink>
             <NavLink to="/setting">Setting</NavLink>
         </StyledCatalog>
